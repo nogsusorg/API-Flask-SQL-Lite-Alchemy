@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Endpoints API</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body class="dashBdy">
+    <div class="header">
+        <h1>Bienvenido, Usuario (ID: {{ user_id }})</h1>
+        <p>¡Acceso a la API RESTful de Productos concedido!</p>
+        <a href="/logout" class="logout-btn">Cerrar Sesión</a>
+    </div>
+
+    <div class="container">
+        <h2>Endpoints Disponibles (Protegidos)</h2>
+        <p>Todas las rutas se acceden a través de la base <code>/api</code>.</p>
+
+        <ul class="endpoint-list">
+            <li class="endpoint-item get">
+                <span class="method get-m">GET</span>
+                <span class="path">/api/products?page=1&per_page=5</span>
+                <p><strong>Descripción:</strong> Recupera un listado paginado de productos. Los parámetros <code>page</code> y <code>per_page</code> son opcionales.</p>
+                <p><strong>Retorno:</strong> JSON con lista de productos y metadatos de paginación.</p>
+            </li>
+            <li class="endpoint-item get">
+                <span class="method get-m">GET</span>
+                <span class="path">/api/products/&lt;int:product_id&gt;</span>
+                <p><strong>Descripción:</strong> Recupera los detalles de un producto específico utilizando su ID.</p>
+                <p><strong>Retorno:</strong> JSON del objeto producto o 404 si no existe.</p>
+            </li>
+            <li class="endpoint-item post">
+                <span class="method post-m">POST</span>
+                <span class="path">/api/products</span>
+                <p><strong>Descripción:</strong> Crea un nuevo producto. Requiere un cuerpo JSON con <code>name</code>, <code>price</code> y opcionalmente <code>description</code>.</p>
+                <p><strong>Ejemplo JSON:</strong> <code>{"name": "Tablet Pro", "price": 899.99, "description": "10 pulgadas, 128GB"}</code></p>
+                <p><strong>Retorno:</strong> JSON con el ID del producto creado (código 201).</p>
+            </li>
+            <li class="endpoint-item delete">
+                <span class="method delete-m">DELETE</span>
+                <span class="path">/api/products/&lt;int:product_id&gt;</span>
+                <p><strong>Descripción:</strong> Elimina un producto específico utilizando su ID.</p>
+                <p><strong>Retorno:</strong> JSON de confirmación o 404 si no existe.</p>
+            </li>
+        </ul>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login de Acceso a API</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body class="loginBdy">
+    <div class="login-card">
+        <h1>Acceso Requerido</h1>
+        <p>Introduzca sus credenciales para acceder al Dashboard de Endpoints.</p>
+
+        {% if message %}
+            <div class="message">{{ message }}</div>
+        {% endif %}
+
+        <form method="POST" action="/login">
+            <input type="text" id="username" name="username" placeholder="Usuario" required>
+            <input type="password" id="password" name="password" placeholder="Contraseña" required>
+            <button type="submit" class="btn">Iniciar Sesión</button>
+        </form>
+
+        <div class="credentials">
+            <p>Credenciales de Prueba: **admin** / **password123**</p>
+        </div>
+    </div>
+</body>
+</html>
